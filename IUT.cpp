@@ -587,236 +587,245 @@ int main()
         clr();
         showhome();
         int opt; cin >> opt;
-        if (opt == 1) {
-            add:
-            clr();
-            bool y = admin();
-            if (y == false) {
-            system("color 0C");
-                puts("Incorrect password entered!");
-                system("Pause");
-                goto home;
-            }
-            clr();
-            showadd();
-            int x; cin >> x;
-            clr();
-            if (x == 1) {
-                clr();
-                showdepartments();
-                int did; cin >> did;
-                clr();
-                d[did].addtostudent(dname[did]);
-            } else if (x == 2) {
-                clr();
-                showdepartments();
-                int did; cin >> did;
-                clr();
-                d[did].addtofaculty(dname[did]);
-            } else if (x == 3) {
-                clr();
-                Staff t;
-                t.addStaff();
-                sf.emplace_back(t);
-            } else if (x == 4) {
-                clr();
-                AB t;
-                t.addAB();
-                bld.emplace_back(t);
-            } else if (x == 5) {
-                clr();
-                Society t;
-                t.addSociety();
-                st.emplace_back(t);
-            } else if (x == 6) {
-                clr();
-                Hall t;
-                t.addHall();
-                hl.emplace_back(t);
-            } else if (x == 7) {
-                clr();
-                sc.addMember();
-            } else if (x == 8) {
-                clr();
-                mc.adddoctor();
-            } else if (x == 9) {
-                clr();
-                pl.addgarage();
-            } else if (x == 10) {
-                //clr();
-                goto home;
-            }
-            else {
-                            system("color 0C");
-                puts("\nUnsupported button pressed. Please try again!\n");
-                system("Pause");
-                goto add;
-            }
-        } else if (opt == 2) {
-            show:
-            clr();
-            showshow();
-            int x; cin >> x;
-            clr();
-            if (x == 1) {
-                showdepartments();
-                int did; cin >> did;
-                clr();
-                d[did].showallstudents();
-            } else if (x == 2) {
-                showdepartments();
-                int did; cin >> did;
-                clr();
-                d[did].showallfaculties();
-            } else if (x == 3) {
-                int sz = (int) sf.size();
-                if (sz == 0) {
-                                    system("color 0C");
-                    puts("No staff added so far!");
-                } else {
-                    for (int i = 0; i < sz; ++i) {
-                        sf[i].showStaff();
-                        seperator();
-                    }
-                }
-            } else if (x == 4) {
-                int sz = (int) bld.size();
-                if (sz == 0) {
-                                    system("color 0C");
-                    puts("No academic building added so far!");
-                } else {
-                    for (int i = 0; i < sz; ++i) {
-                        bld[i].showAB();
-                        seperator();
-                    }
-                }
-            } else if (x == 5) {
-                int sz = (int) st.size();
-                if (sz == 0) {
-                                    system("color 0C");
-                    puts("No society added so far!");
-                } else {
-                    for (int i = 0; i < sz; ++i) {
-                        st[i].showSociety();
-                        seperator();
-                    }
-                }
-            } else if (x == 6) {
-                int sz = (int) hl.size();
-                if (sz == 0) {
-                                    system("color 0C");
-                    puts("No hall added so far!");
-                } else {
-                    for (int i = 0; i < sz; ++i) {
-                        hl[i].showHall();
-                        seperator();
-                    }
-                }
-            } else if (x == 7) {
-                if (!hasswc) {
-                                    system("color 0C");
-                    puts("Student Wellfare Committee not added so far!");
-                } else {
-                    sc.showMember();
-                }
-            } else if (x == 8) {
-                if (!hasmc) {
-                                    system("color 0C");
-                    puts("No doctor added in the medical center yet!");
-                } else {
-                    mc.showdoctor();
-                }
-            } else if (x == 9) {
-                if (!haspl) {
-                                    system("color 0C");
-                    puts("Parking lot not yet added!");
-                } else {
-                    pl.showparking();
-                }
-            } else if (x == 10) {
-                goto home;
-            }
-            else {
-                                system("color 0C");
-                puts("Invalid key pressed. Please try again!");
-                system("Pause");
-                goto show;
-            }
-            system("Pause");
-        } else if (opt == 3) {
-            del:
-            clr();
-            bool y = admin();
-            if (y == false) {
-                                system("color 0C");
-                puts("Incorrect password entered!");
-                system("Pause");
-                goto home;
-            }
-            clr();
-            showdelete();
-            int opt; cin >> opt;
+        try {
             if (opt == 1) {
+                add:
                 clr();
-                showdepartments();
-                int did; cin >> did;
+                bool y = admin();
+                if (y == false) {
+                system("color 0C");
+                    puts("Incorrect password entered!");
+                    system("Pause");
+                    goto home;
+                }
                 clr();
-                puts("Enter ID of the student you want to delete");
-                cout << "-> ";
-                int id; cin >> id;
-                d[did].delstudent(id);
+                showadd();
+                int x; cin >> x;
+                clr();
+                if (x == 1) {
+                    clr();
+                    showdepartments();
+                    int did; cin >> did;
+                    clr();
+                    d[did].addtostudent(dname[did]);
+                } else if (x == 2) {
+                    clr();
+                    showdepartments();
+                    int did; cin >> did;
+                    clr();
+                    d[did].addtofaculty(dname[did]);
+                } else if (x == 3) {
+                    clr();
+                    Staff t;
+                    t.addStaff();
+                    sf.emplace_back(t);
+                } else if (x == 4) {
+                    clr();
+                    AB t;
+                    t.addAB();
+                    bld.emplace_back(t);
+                } else if (x == 5) {
+                    clr();
+                    Society t;
+                    t.addSociety();
+                    st.emplace_back(t);
+                } else if (x == 6) {
+                    clr();
+                    Hall t;
+                    t.addHall();
+                    hl.emplace_back(t);
+                } else if (x == 7) {
+                    clr();
+                    sc.addMember();
+                } else if (x == 8) {
+                    clr();
+                    mc.adddoctor();
+                } else if (x == 9) {
+                    clr();
+                    pl.addgarage();
+                } else if (x == 10) {
+                    //clr();
+                    goto home;
+                }
+                else {
+                                system("color 0C");
+                    puts("\nUnsupported button pressed. Please try again!\n");
+                    system("Pause");
+                    goto add;
+                }
             } else if (opt == 2) {
+                show:
                 clr();
-                showdepartments();
-                system("CLS");
-                int did; cin >> did;
+                showshow();
+                int x; cin >> x;
                 clr();
-                puts("Enter ID of the faculty you want to delete: ");
-                int id; cin >> id;
-                d[did].delfaculty(id);
+                if (x == 1) {
+                    showdepartments();
+                    int did; cin >> did;
+                    clr();
+                    d[did].showallstudents();
+                } else if (x == 2) {
+                    showdepartments();
+                    int did; cin >> did;
+                    clr();
+                    d[did].showallfaculties();
+                } else if (x == 3) {
+                    int sz = (int) sf.size();
+                    if (sz == 0) {
+                                        system("color 0C");
+                        puts("No staff added so far!");
+                    } else {
+                        for (int i = 0; i < sz; ++i) {
+                            sf[i].showStaff();
+                            seperator();
+                        }
+                    }
+                } else if (x == 4) {
+                    int sz = (int) bld.size();
+                    if (sz == 0) {
+                                        system("color 0C");
+                        puts("No academic building added so far!");
+                    } else {
+                        for (int i = 0; i < sz; ++i) {
+                            bld[i].showAB();
+                            seperator();
+                        }
+                    }
+                } else if (x == 5) {
+                    int sz = (int) st.size();
+                    if (sz == 0) {
+                                        system("color 0C");
+                        puts("No society added so far!");
+                    } else {
+                        for (int i = 0; i < sz; ++i) {
+                            st[i].showSociety();
+                            seperator();
+                        }
+                    }
+                } else if (x == 6) {
+                    int sz = (int) hl.size();
+                    if (sz == 0) {
+                                        system("color 0C");
+                        puts("No hall added so far!");
+                    } else {
+                        for (int i = 0; i < sz; ++i) {
+                            hl[i].showHall();
+                            seperator();
+                        }
+                    }
+                } else if (x == 7) {
+                    if (!hasswc) {
+                                        system("color 0C");
+                        puts("Student Wellfare Committee not added so far!");
+                    } else {
+                        sc.showMember();
+                    }
+                } else if (x == 8) {
+                    if (!hasmc) {
+                                        system("color 0C");
+                        puts("No doctor added in the medical center yet!");
+                    } else {
+                        mc.showdoctor();
+                    }
+                } else if (x == 9) {
+                    if (!haspl) {
+                                        system("color 0C");
+                        puts("Parking lot not yet added!");
+                    } else {
+                        pl.showparking();
+                    }
+                } else if (x == 10) {
+                    goto home;
+                }
+                else {
+                                    system("color 0C");
+                    puts("Invalid key pressed. Please try again!");
+                    system("Pause");
+                    goto show;
+                }
+                system("Pause");
             } else if (opt == 3) {
+                del:
                 clr();
-                puts("Enter ID of the stuff you want to delete: ");
-                cout << "-> ";
-                int id; cin >> id;
-                delstaff(sf, id);
+                bool y = admin();
+                if (y == false) {
+                                    system("color 0C");
+                    puts("Incorrect password entered!");
+                    system("Pause");
+                    goto home;
+                }
+                clr();
+                showdelete();
+                int opt; cin >> opt;
+                if (opt == 1) {
+                    clr();
+                    showdepartments();
+                    int did; cin >> did;
+                    clr();
+                    puts("Enter ID of the student you want to delete");
+                    cout << "-> ";
+                    int id; cin >> id;
+                    d[did].delstudent(id);
+                } else if (opt == 2) {
+                    clr();
+                    showdepartments();
+                    system("CLS");
+                    int did; cin >> did;
+                    clr();
+                    puts("Enter ID of the faculty you want to delete: ");
+                    int id; cin >> id;
+                    d[did].delfaculty(id);
+                } else if (opt == 3) {
+                    clr();
+                    puts("Enter ID of the stuff you want to delete: ");
+                    cout << "-> ";
+                    int id; cin >> id;
+                    delstaff(sf, id);
+                } else if (opt == 4) {
+                    goto home;
+                } else {
+                                    system("color 0C");
+                    puts("\nUnsupported button pressed. Please try again!\n");
+                    system("Pause");
+                    goto del;
+                }
             } else if (opt == 4) {
-                goto home;
+                clr();
+                bool y = admin();
+                if (y == false) {
+                                    system("color 0C");
+                    puts("Incorrect password entered!");
+                    system("Pause");
+                    goto home;
+                }
+                string s;
+                cout << "Enter new password: "; cin >> s;
+                pass = getHash(s);
+                            system("color 02");
+                puts("Password changed successfully!");
+                system("Pause");
+            } else if (opt == 5) {
+                for (int i = 1; i < 7; ++i) {
+                    file.writeStudent(d[i].stv, dname[i]);
+                    file.writeFaculty(d[i].ft, dname[i]);
+                }
+                file.writeStaff(sf);
+                file.writePL(pl);
+                file.writeMC(mc);
+                file.writeSWC(sc);
+                file.writeAB(bld);
+                file.writeHall(hl);
+                file.writeSociety(st);
+                file.writePass(pass);
+                exit(0);
             } else {
-                                system("color 0C");
-                puts("\nUnsupported button pressed. Please try again!\n");
-                system("Pause");
-                goto del;
+                throw(opt);
             }
-        } else if (opt == 4) {
-            clr();
-            bool y = admin();
-            if (y == false) {
-                                system("color 0C");
-                puts("Incorrect password entered!");
-                system("Pause");
-                goto home;
-            }
-            string s;
-            cout << "Enter new password: "; cin >> s;
-            pass = getHash(s);
-                        system("color 02");
-            puts("Password changed successfully!");
+        } catch (int opt) {
+            system("color 0C");
+            puts("\nUnsupported button pressed. Please try again!\n");
             system("Pause");
-        } else if (opt == 5) {
-            for (int i = 1; i < 7; ++i) {
-                file.writeStudent(d[i].stv, dname[i]);
-                file.writeFaculty(d[i].ft, dname[i]);
-            }
-            file.writeStaff(sf);
-            file.writePL(pl);
-            file.writeMC(mc);
-            file.writeSWC(sc);
-            file.writeAB(bld);
-            file.writeHall(hl);
-            file.writeSociety(st);
-            file.writePass(pass);
-            exit(0);
+            goto home;
         }
     }
 
