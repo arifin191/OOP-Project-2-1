@@ -97,6 +97,7 @@ void Department::showallstudents() {
     system("color 0C");
     puts("No students added so far!");
   }
+  sort(stv.begin(), stv.end());
   for (int i = 0; i < (int) stv.size(); ++i) {
     stv[i].showstudent();
     seperator();
@@ -108,6 +109,7 @@ void Department::showallfaculties() {
     system("color 0C");
     puts("No faculties added so far!");
   }
+  sort(ft.begin(), ft.end());
   for (int i = 0; i < (int) ft.size(); ++i) {
     ft[i].showfaculty();
     seperator();
