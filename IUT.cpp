@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
 #include <unistd.h>
 #include "society.cpp"
+#include "building.cpp"
 #include "hall.cpp"
-
 #include "academicbuilding.cpp"
 #include "studentwellfarecommittee.cpp"
 #include "medicalcenter.cpp"
@@ -48,12 +48,14 @@ struct FileIO {
         int n; in >> n;
         for (int i = 0; i < n; ++i) {
             Hall temp;
-            string s; int it;
+            string s; int it,flo;
             in >> s;
             s = decode(s);
             temp.setname(s);
             in >> it;
             temp.setmaxcap(it);
+            in >> flo;
+            temp.setfloor(flo);
             in >> s;
             s = decode(s);
             temp.setsupervisor(s);
@@ -74,6 +76,7 @@ struct FileIO {
             Hall t = v[i];
             out << encode(t.getname()) << "\n";
             out << t.getmaxcap() << "\n";
+            out << t.getfloor() << "\n";
             out << encode(t.getsupervisor()) << "\n";
             out << encode(t.getcontact()) << "\n";
         }
