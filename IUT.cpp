@@ -398,6 +398,35 @@ struct FileIO {
 
 };
 
+template <class T>
+class Password {
+public:
+
+    Password() {}
+    
+    T getHash(const string s) { //rabin karp hashing algorithm
+        T hash = 0, power = 1, mod = 1e9 + 7, p = 101;
+        for (char ch : s) {
+            hash = (hash + power * ch) % mod;
+            power = power * p % mod;
+        }
+        return hash;
+    }
+
+    bool admin() {
+        system("color 0F");
+        if (isRoot) return true;
+        string s; cout << "Enter root password to access this feature: ";
+        cin >> s;
+        if (getHash(s) == pass) {
+            isRoot = true;
+            return true;
+        } else {
+            return false;
+        }
+    }
+};
+
 void spc(int unit) //print given unit of spaces
 {
     while (unit--) printf(" ");
@@ -508,28 +537,6 @@ void showadd() {
     cout << "-> ";
 }
 
-long long getHash(const string s) { //rabin karp hashing algorithm
-    long long hash = 0, power = 1, mod = 1e9 + 7, p = 101;
-    for (char ch : s) {
-        hash = (hash + power * ch) % mod;
-        power = power * p % mod;
-    }
-    return hash;
-}
-
-bool admin() {
-    system("color 0F");
-    if (isRoot) return true;
-    string s; cout << "Enter root password to access this feature: ";
-    cin >> s;
-    if (getHash(s) == pass) {
-        isRoot = true;
-        return true;
-    } else {
-        return false;
-    }
-}
-
 void delstaff(vector <Staff>& sf, int id) {
 
     for (int i = 0; i < (int) sf.size(); ++i) {
@@ -575,7 +582,7 @@ int main()
     hl = file.readHall();
     st = file.readSociety();
     pass = file.readPass();
-
+    Password <long long> P;
     clr();
     showwelcome();
 
@@ -591,7 +598,7 @@ int main()
             if (opt == 1) {
                 add:
                 clr();
-                bool y = admin();
+                bool y = P.admin();
                 if (y == false) {
                 system("color 0C");
                     puts("Incorrect password entered!");
@@ -747,7 +754,7 @@ int main()
             } else if (opt == 3) {
                 del:
                 clr();
-                bool y = admin();
+                bool y = P.admin();
                 if (y == false) {
                                     system("color 0C");
                     puts("Incorrect password entered!");
@@ -791,7 +798,7 @@ int main()
                 }
             } else if (opt == 4) {
                 clr();
-                bool y = admin();
+                bool y = P.admin();
                 if (y == false) {
                                     system("color 0C");
                     puts("Incorrect password entered!");
@@ -800,7 +807,7 @@ int main()
                 }
                 string s;
                 cout << "Enter new password: "; cin >> s;
-                pass = getHash(s);
+                pass = P.getHash(s);
                             system("color 02");
                 puts("Password changed successfully!");
                 system("Pause");
