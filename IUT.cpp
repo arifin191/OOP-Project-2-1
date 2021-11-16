@@ -558,8 +558,9 @@ void clr() {
     system("CLS");
 }
 
-int main()
-{
+class IUT {
+public:
+    void run() {
 
    FileIO file;
    vector <string> dname = {"", "cse", "eee", "mce", "cee", "btm", "tve"};
@@ -838,6 +839,12 @@ int main()
             goto home;
         }
     }
+    }
+};
 
+int main()
+{
+    IUT iut;
+    iut.run();
 }
 
